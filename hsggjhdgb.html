@@ -1,0 +1,45 @@
+<div class="row mb-4 shadow-lg">
+    <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+        <!-- une 1ere image -->
+        <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+            <img src="./image/escarpin rose.jpg" class="img-fluid mb-4 mt-4 w-100 rounded-2 shadow"
+                alt="escarpin rose" />
+        </div>
+    </div>
+    <div class="col-lg-5 col-md-6 mb-4 mt-4 mb-lg-0 text-white">
+        <strong>
+            <p>escarpin bout pointu</p>
+        </strong>
+        <p>Couleur rose </p>
+        <p>pointure: 40</p>
+        <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
+            <i class="fas fa-trash"></i>
+        </button>
+        <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip"
+            title="Move to the wish list">
+            <i class="fas fa-heart"></i>
+        </button>
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4 mt-4 mb-lg-0 text-white">
+
+        <div class="d-flex mb-4" style="max-width: 300px">
+            <button class="btn btn-primary px-3 me-2"
+                onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                <i class="fas fa-minus"></i>
+            </button>
+
+            <div class="form-outline">
+                <input id="form1" min="0" name="quantité" value="1" type="number" class="form-control" />
+                <label class="form-label text-center" for="form1">Quantité</label>
+            </div>
+
+            <button class="btn btn-primary px-3 ms-2"
+                onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+        <p class="text-start text-md-center">
+            <strong>$35.4 </strong>
+        </p>
+    </div>
+</div>
