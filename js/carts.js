@@ -5,11 +5,12 @@ const cart = [
         title: "escarpin rose",
         price: 23.00,
         quantity: 1,
-        color:'red',
-        pointure: 41 ,
+        color: 'red',
+        pointure: 41,
         total: function () {
             return this.quantity * this.price;
-        }
+        },
+        isLike: false
     },
     {
         productRef: "kjkj78676",
@@ -17,11 +18,12 @@ const cart = [
         title: "escarpin vert",
         price: 45.00,
         quantity: 2,
-        color:'red',
-        pointure :40,
-         total: function () {
+        color: 'red',
+        pointure: 40,
+        total: function () {
             return this.quantity * this.price;
-        }
+        },
+        isLike: false
     },
     {
         productRef: "kjkj78676d",
@@ -29,11 +31,12 @@ const cart = [
         title: "escarpin ROUGE",
         price: 45.00,
         quantity: 2,
-        color:'red',
+        color: 'red',
         pointure: 38,
-        total:function () {
+        total: function () {
             return this.quantity * this.price;
-        }
+        },
+        isLike: true
     }
 ];
 
@@ -70,29 +73,47 @@ function createCartItemHTML(item) {
     //titre
     var titleDiv = document.createElement("div");
     titleDiv.innerHTML = `<strong><p>${item.title}</p></strong><p>Couleur ${item.color} </p><p>pointure: ${item.pointure} </p>`
-    titleDiv.className ="col-lg-5 col-md-6 mb-4 mt-4 mb-lg-0 text-white"
+    titleDiv.className = "col-lg-5 col-md-6 mb-4 mt-4 mb-lg-0 text-white"
 
     //button
-    var removebutton=document.createElement("button");
-    removebutton.className="btn btn-primary btn-sm me-1 mb-2" ;
-    removebutton.setAttribute(`data-mdb-toggle`,`tooltip`);
-    removebutton.title="Remove item";
-    removebutton.innerHTML=`<i class="fas fa-trash"></i>`;
+    var removebutton = document.createElement("button");
+    removebutton.className = "btn btn-primary btn-sm me-1 mb-2";
+    removebutton.setAttribute(`data-mdb-toggle`, `tooltip`);
+    removebutton.title = "Remove item";
+    removebutton.innerHTML = `<i class="fas fa-trash"></i>`;
+
+    removebutton.addEventListener('click', function () {
+        var cartItem = document.getElementById(item.productRef);
+        var confirmDel = confirm("Are you sure ?");
+        if (confirmDel) {
+            cartItem.remove();
+        }
+    });
+
     titleDiv.appendChild(removebutton);
 
-    var likebutton=document.createElement("button")
-    likebutton.className="btn btn-danger btn-sm mb-2";
-    likebutton.setAttribute(`data-mdb-toggle`,`tooltip`);
-    likebutton.title="Move to the wish list";
-    likebutton.innerHTML=`<i class="fas fa-heart"></i>`
+    var likebutton = document.createElement("button")
+    likebutton.className = "btn btn-transparent btn-sm mb-2";
+    likebutton.setAttribute(`data-mdb-toggle`, `tooltip`);
+    likebutton.title = "Move to the wish list";
+    if (item.isLike) {
+        likebutton.innerHTML = `<i class="fa-solid text-danger fa-heart"></i>`
+    }
+    else {
+        likebutton.innerHTML = `<i class="fa-regular text-danger fa-heart"></i>`
+    }
+
+    likebutton.addEventListener('click', function () {
+        if (item.isLike) {
+            item.isLike = false;
+            likebutton.innerHTML = `<i class="fa-regular text-danger fa-heart"></i>`
+        }
+        else {
+            item.isLike = true;
+            likebutton.innerHTML = `<i class="fa-solid text-danger fa-heart"></i>`
+        }
+    })
     titleDiv.appendChild(likebutton)
-
-
-
-
-
-
-
 
     row.appendChild(imageColDiv);
     row.appendChild(titleDiv);
